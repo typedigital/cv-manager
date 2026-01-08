@@ -1,0 +1,158 @@
+{
+  "meta": {
+    "version": "1.0",
+    "lastUpdated": "2025-05-01",
+    "language": "de"
+  },
+  "basics": {
+    "name": { "first": "Max", "last": "Mustermann" },
+    "label": "Senior Frontend Engineer",
+    "image": "path/to/max_profile.jpg",
+    "email": "max.mustermann@beispiel.de",
+    "website": "max-codes.de",
+    "location": {
+      "address": "Musterstraße 123",
+      "postalCode": "10115",
+      "city": "Berlin",
+      "countryCode": "DE"
+    },
+    "summary": "Leidenschaftlicher Frontend-Entwickler mit über 7 Jahren Erfahrung in der Gestaltung skalierbarer Webarchitekturen. Mein Fokus liegt auf Performance-Optimierung, Barrierefreiheit und der Entwicklung intuitiver Benutzeroberflächen. Als Senior Developer liegt mir zudem das Mentoring von Junior-Kollegen und die Etablierung sauberer Code-Standards am Herzen."
+  },
+  "skills": [
+    {
+      "category": "Development",
+      "items": [
+        {
+          "name": "Vue.js / Nuxt",
+          "level": "90%"
+        },
+        {
+          "name": "JavaScript (ES6+)",
+          "level": "85%"
+        },
+        {
+          "name": "TypeScript",
+          "level": "80%"
+        },
+        {
+          "name": "HTML5 / CSS3",
+          "level": "95%"
+        },
+        {
+          "name": "Angular",
+          "level": "60%"
+        },
+        {
+          "name": "Docker",
+          "level": "40%"
+        }
+      ]
+    },
+    {
+      "category": "Tools & Workflow",
+      "items": [
+        {
+          "name": "Git / GitHub"
+        },
+        {
+          "name": "Jira & Confluence"
+        },
+        {
+          "name": "Webpack / Vite"
+        },
+        {
+          "name": "Figma"
+        },
+        {
+          "name": "Jest / Cypress"
+        }
+      ]
+    },
+    {
+      "category": "Sprachen",
+      "items": [
+        {
+          "name": "Deutsch",
+          "level": "100%"
+        },
+        {
+          "name": "Englisch",
+          "level": "90%"
+        },
+        {
+          "name": "Spanisch",
+          "level": "30%"
+        }
+      ]
+    }
+  ],
+  "work": [
+    {
+      "company": "TechStart Berlin GmbH",
+      "location": "Berlin",
+      "position": "Senior Frontend Engineer",
+      "startDate": "2023-01",
+      "endDate": null,
+      "current": true,
+      "summary": "Leitung des Frontend-Teams bei der Neuentwicklung der SaaS-Plattform. Einführung von Micro-Frontends und Etablierung einer CI/CD Pipeline.",
+      "techStack": ["Vue.js 3", "TypeScript", "Vite", "Tailwind CSS", "AWS"],
+      "companySize": "<100 Mitarbeiter:innen"
+    },
+    {
+      "company": "E-Commerce Solutions AG",
+      "location": "München",
+      "position": "Frontend Developer",
+      "startDate": "2020-03",
+      "endDate": "2022-12",
+      "summary": "Entwicklung performanter Online-Shops für Großkunden. Implementierung von Headless-CMS Lösungen und Optimierung der Core Web Vitals.",
+      "techStack": ["React", "Next.js", "GraphQL", "Storybook"],
+      "companySize": "<500 Mitarbeiter:innen"
+    },
+    {
+      "company": "WebAgentur Kreativ",
+      "location": "Hamburg",
+      "position": "Junior Web Developer",
+      "startDate": "2018-06",
+      "endDate": "2020-02",
+      "summary": "Umsetzung von Landingpages und Corporate Websites nach Design-Vorgaben. Wartung bestehender WordPress-Installationen.",
+      "techStack": ["HTML", "SCSS", "JavaScript", "PHP", "WordPress"],
+      "companySize": "<20 Mitarbeiter:innen"
+    },
+    {
+      "company": "Medienhaus Nord",
+      "location": "Kiel",
+      "position": "Werkstudent Webentwicklung",
+      "startDate": "2016-10",
+      "endDate": "2018-05",
+      "summary": "Unterstützung bei der Pflege des Redaktionssystems und Erstellung kleinerer Widgets für die Nachrichtenseite.",
+      "techStack": ["jQuery", "Bootstrap", "CSS"],
+      "companySize": "<200 Mitarbeiter:innen"
+    }
+  ],
+  "education": [
+    {
+      "institution": "Technische Universität Berlin",
+      "area": "Medieninformatik",
+      "studyType": "Master of Science",
+      "summary": "Schwerpunkt: Mensch-Maschine-Interaktion und Usability Engineering. Masterarbeit über 'Barrierefreiheit in modernen Single Page Applications'."
+    },
+    {
+      "institution": "Hochschule für Angewandte Wissenschaften Hamburg",
+      "area": "Informatik",
+      "studyType": "Bachelor of Science",
+      "summary": "Grundlagen der Softwareentwicklung und Webtechnologien."
+    }
+  ],
+  "style": {
+    "colors": {
+      "primary": "#171D26",
+      "accent": "#FF5959", 
+      "background": "#FFFFFF",
+      "secondaryBackground": "#E3E5E5"
+    },
+    "fonts": {
+      "primary": "Montserrat, sans-serif",
+      "secondary": "Merriweather, serif"
+    }
+  }
+}

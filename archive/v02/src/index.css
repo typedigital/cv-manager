@@ -1,0 +1,16 @@
+/* Minimaler Reset, damit nichts stört */
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* WICHTIG: Überschreibt den Vite-Default, der Scrollen verhindert */
+body {
+  margin: 0;
+  padding: 0;
+  display: block; /* Vite Default war 'flex', das macht A4 Seiten kaputt */
+  min-width: 320px;
+  min-height: 100vh;
+}

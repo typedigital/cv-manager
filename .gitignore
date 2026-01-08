@@ -1,0 +1,26 @@
+# --- OS & Editor ---
+.DS_Store
+.vscode/
+.idea/
+*.log
+
+# --- Python / Django (Backend) ---
+backend/venv/
+backend/.env
+backend/db.sqlite3
+backend/__pycache__/
+backend/*.pyc
+backend/**/__pycache__
+backend/staticfiles/
+
+# Media: Wir wollen die Ordnerstruktur behalten, aber keine Testbilder
+backend/media/*
+!backend/media/.gitkeep
+
+# --- Node / React (Frontend) ---
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+frontend/npm-debug.log*
+frontend/yarn-error.log*

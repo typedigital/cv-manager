@@ -1,0 +1,278 @@
+{
+  "meta": {
+    "version": "1.0",
+    "lastUpdated": "2025-05-01",
+    "language": "de"
+  },
+  "basics": {
+    "name": { "first": "Lucas", "last": "Falkowsky" },
+    "label": "typedigital GmbH",
+    "image": "path/to/profile.jpg",
+    "email": "lucas.falkowsky@typedigital.de",
+    "website": "typedigital.de",
+    "location": {
+      "address": "Klinkerberg 9",
+      "postalCode": "86152",
+      "city": "Augsburg",
+      "countryCode": "DE"
+    },
+    "summary": "Durch meine Projekte bei Typedigital konnte ich hinreichend Erfahrungen mit React, React Native, JavaScript, TypeScript und Node.js sammeln. In Multidisziplinären Projekten ermöglichte mir mein Arbeitgeber außerdem das ausbauen meiner Fähigkeiten in UX/UI design, animation und illustration. Durch meine Fähigkeiten in Kommunikation, Organisation und Kritischen- sowie Kreativen Denken, schaffe ich es, mich schnell in neue Projekte und Teams einzubringen. Mein persönliches Ziel ist es IT-Themen für eine breite Masse verständlich zu machen."
+  },
+  "skills": [
+    {
+      "category": "Development",
+      "items": [
+        {
+          "name": "React",
+          "level": "50%"
+        },
+        {
+          "name": "Typescript",
+          "level": "55%"
+        },
+        {
+          "name": "Node.js",
+          "level": "45%"
+        },
+        {
+          "name": "JavaScript",
+          "level": "50%"
+        },
+        {
+          "name": "React Native",
+          "level": "40%"
+        },
+        {
+          "name": "Datenbanken",
+          "level": "40%"
+        },
+        {
+          "name": "Python",
+          "level": "25%"
+        }
+      ]
+    },
+    {
+      "category": "Tools & Programme",
+      "items": [
+        {
+          "name": "Figma"
+        },
+        {
+          "name": "Photoshop"
+        },
+        {
+          "name": "Illustrator"
+        },
+        {
+          "name": "After Effects"
+        },
+        {
+          "name": "Rive"
+        }
+      ]
+    },
+    {
+      "category": "Sprachen",
+      "items": [
+        {
+          "name": "Englisch",
+          "level": "85%"
+        },
+        {
+          "name": "Italienisch",
+          "level": "55%"
+        },
+        {
+          "name": "Französisch",
+          "level": "15%"
+        }
+      ]
+    }
+  ],
+  "work": [
+    {
+      "company": "Abimanufaktur GmbH",
+      "location": "Augsburg",
+      "position": "Junior Fullstack Architect & Projektmanagement",
+      "startDate": "2025-08",
+      "endDate": null,
+      "current": true,
+      "summary": "Aufgaben: Projektplanung für UX/UI & Entwicklung",
+      "techStack": ["UX / UI", "Animation", "Fullstack Developer"],
+      "companySize": "<50 Mitarbeiter:innen"
+    },
+    {
+      "company": "Abimanufaktur GmbH",
+      "location": "Augsburg",
+      "position": "Fullstack Developer",
+      "startDate": "2025-04",
+      "endDate": null,
+      "current": true,
+      "summary": "Aufgaben: Dauerbeauftragung zur Erweiterung der App um aussagekräftige Tests, Beheben von Bugs und Entwickeln neuer Features.",
+      "techStack": ["Typescript", "React", "Node", "CSS", "Firebase"],
+      "companySize": "<50 Mitarbeiter:innen"
+    },
+    {
+      "company": "StrengthLab360 GmbH",
+      "location": "Hohenwart",
+      "position": "Fullstack Developer",
+      "startDate": "2025-03",
+      "endDate": "2025-03",
+      "summary": "Aufgaben: Refactoring der Codebase, Implementierung von Servicestrukturen, Consulting für notwendige Anpassungen",
+      "techStack": ["Typescript", "React", "Node", "CSS"],
+      "companySize": "<10 Mitarbeiter:innen"
+    },
+    {
+      "company": "Abimanufaktur GmbH",
+      "location": "Augsburg",
+      "position": "Fullstack Developer",
+      "startDate": "2024-08",
+      "endDate": "2025-02",
+      "summary": "Aufgaben: Refactoring des Error handlings im Backend, Erweiterung der App um aussagekräftige Tests, Beheben von Bugs",
+      "techStack": ["Typescript", "React", "Node", "CSS", "Firebase"],
+      "companySize": "<50 Mitarbeiter:innen"
+    },
+    {
+      "company": "SAFETYTEST GmbH",
+      "location": "",
+      "position": "UX/UI Designer",
+      "startDate": "2024-08",
+      "endDate": "2024-12",
+      "summary": "Aufgaben: UX/UI Analyse der bestehenden App, User Flow Mapping für angepasste User-Requirements, Wireframing und Mockup für den neuen User Flow",
+      "techStack": ["Figma"],
+      "companySize": "<200 Mitarbeiter:innen"
+    },
+    {
+      "company": "Backhaus Hackner GmbH",
+      "location": "",
+      "position": "Frontend Developer",
+      "startDate": "2024-08",
+      "endDate": "2025-02",
+      "summary": "Aufgaben: Database Modelling für headless Wordpress, Entwicklung einer responsiven Nutzeroberfläche anhand eines vom Kunden bereitgestellten Designs.",
+      "techStack": ["React", "Typescript", "Vice", "Headless Wordpress"],
+      "companySize": "<600 Mitarbeiter:innen"
+    },
+    {
+      "company": "IGL Umwelt und Gebäudetechnik GmbH & Co. KG",
+      "location": "",
+      "position": "UX/UI Designer",
+      "startDate": "2024-07",
+      "endDate": "2024-11",
+      "summary": "Aufgaben: UX/UI Analyse, User Flow Mapping, Low-Fidelity Wireframing, Prototyping & Erstellen eines Click-Dummies",
+      "techStack": ["Figma"],
+      "companySize": "<200 Mitarbeiter:innen"
+    },
+    {
+      "company": "Perian GmbH",
+      "location": "Augsburg",
+      "position": "Animation Designer",
+      "startDate": "2024-07",
+      "endDate": "2024-07",
+      "summary": "Aufgaben: Umsetzen des statischen Designs eines Website Headers in Rive als Animation",
+      "techStack": ["Rive"],
+      "companySize": "<10 Mitarbeiter:innen"
+    },
+    {
+      "company": "Greenlight Consulting GmbH",
+      "location": "Augsburg",
+      "position": "Backend Developer",
+      "startDate": "2024-06",
+      "endDate": "2024-06",
+      "summary": "Aufgaben: Anbindung der HubSpot API für personalisierte form requests und Performance-Steigerung des Webformulars",
+      "techStack": ["Typescript", "React", "Node"],
+      "companySize": "<200 Mitarbeiter:innen"
+    },
+    {
+      "company": "Abimanufaktur GmbH",
+      "location": "Augsburg",
+      "position": "Fullstack Developer",
+      "startDate": "2024-03",
+      "endDate": "2024-06",
+      "summary": "Aufgaben: Konzeption und Entwicklung eines Druckportals auf Frontend-, Backend- und Datenbankebene sowie Entwicklung von Web-Hooks & Anbindung fremder APIs.",
+      "techStack": ["Typescript", "React", "Node", "CSS", "Firebase"],
+      "companySize": "<50 Mitarbeiter:innen"
+    },
+    {
+      "company": "Takko GmbH",
+      "location": "Augsburg",
+      "position": "Video Editor & Frontend Developer",
+      "startDate": "2024-03",
+      "endDate": "2024-09",
+      "summary": "Aufgaben: Animation und Schnitt von videos geringer Datenmenge für Werbebanner",
+      "techStack": ["Adobe Photoshop", "Adobe After Effects", "Adobe Media Encoder", "Deno", "HTML", "CSS", "Javascript"],
+      "companySize": "<20.000 Mitarbeiter:innen"
+    },
+    {
+      "company": "Lern-Fair e. V.",
+      "location": "Augsburg",
+      "position": "Fullstack Developer",
+      "startDate": "2023-10",
+      "endDate": "2024-03",
+      "summary": "Aufgaben: Entwicklung eines flexiblen Gamification Features in Front- und Backend",
+      "techStack": ["Typescript", "React", "Node", "CSS", "GraphQL"],
+      "companySize": "<100 Mitarbeiter:innen"
+    },
+    {
+      "company": "Lern-Fair e. V.",
+      "location": "Augsburg",
+      "position": "Fullstack Developer",
+      "startDate": "2023-05",
+      "endDate": "2023-05",
+      "summary": "Aufgaben: Einbindung der Zoom API in die Web-Applikation von Lern-Fair",
+      "techStack": ["Typescript", "React", "Node", "CSS", "GraphQL", "Zoom API"],
+      "companySize": "<100 Mitarbeiter:innen"
+    },
+    {
+      "company": "Gesa GmbH",
+      "location": "Augsburg",
+      "position": "Fullstack Developer",
+      "startDate": "2022-05",
+      "endDate": "2023-09",
+      "summary": "Aufgaben: Entwicklung der neuen Website des Kunden",
+      "techStack": ["Typescript", "React", "Astro", "Tailwind", "Directus"],
+      "companySize": "<100 Mitarbeiter:innen"
+    },
+    {
+      "company": "Abimanufaktur GmbH",
+      "location": "Augsburg",
+      "position": "Fullstack Developer",
+      "startDate": "2022-09",
+      "endDate": null,
+      "current": true,
+      "summary": "Aufgaben: Entwicklung neuer Features im Frontend- und Backend-Bereich",
+      "techStack": ["Typescript", "React", "Node", "CSS", "Firebase"],
+      "companySize": "<50 Mitarbeiter:innen"
+    },
+    {
+      "company": "Soffico GmbH",
+      "location": "Augsburg",
+      "position": "Web Developer",
+      "startDate": "2021-05",
+      "endDate": "2022-02",
+      "summary": "Aufgaben: Verwalten und Weiterentwickeln von Design und Technologie der Website",
+      "techStack": ["javascript", "PHP"],
+      "companySize": "<100 Mitarbeiter:innen"
+    }
+  ],
+  "education": [
+    {
+      "institution": "FH Augsburg",
+      "area": "Interaktive Medien",
+      "studyType": "B.A.",
+      "summary": "Seit meinem Studium an der FH Augsburg zähle ich das Web Development zu meinen Passionen. Im breiten Feld der interaktiven Medien hat mich das Planen und Entwickeln von Code begeistert, weshalb ich auch die Evaluation der Thesen meiner Bachelor-Arbeit mithilfe einer eigens Entwickelten Plattform zur effizienten Personalplanung durchgeführt habe."
+    }
+  ],
+  "style": {
+    "colors": {
+      "primary": "#171D26",
+      "accent": "#FF5959",
+      "background": "#FFFFFF",
+      "secondaryBackground": "#E3E5E5"
+    },
+    "fonts": {
+      "primary": "Montserrat, sans-serif",
+      "secondary": "Merriweather, serif"
+    }
+  }
+}

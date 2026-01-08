@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lebenslauf - Lucas Falkowsky</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        :root {
+            /* Farben aus dem Styleguide V2.0 */
+            --dark-jungle-blue: #171D26;
+            --sunset: #FF5959;
+            --platinum: #E3E5E5;
+            --white: #FFFFFF;
+            
+            /* Zuweisung */
+            --primary-color: var(--dark-jungle-blue);
+            --accent-color: var(--sunset);
+            --text-color: var(--dark-jungle-blue);
+            --light-text: #555; 
+            --bg-color: var(--platinum);
+            
+            --sidebar-bg: var(--white);
+            --sidebar-text: var(--dark-jungle-blue);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif; 
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.5;
+            font-size: 0.9rem; 
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .serif-italic {
+            font-family: 'Merriweather', serif;
+            font-style: italic;
+        }
+
+        /* DOWNLOAD BUTTON STYLES */
+        #downloadBtn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: background-color 0.3s ease, transform 0.2s;
+            z-index: 9999;
+        }
+
+        #downloadBtn:hover {
+            background-color: #e04e4e;
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 210mm;
+            /* Browser-Margin für die Gesamtseite (links/rechts/unten) */
+            margin: 0 auto 40px auto; 
+            background: var(--white);
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: 30% 70%;
+        }
+
+        /* SPACER für Browser-Ansicht */
+        #browserSpacer {
+            grid-column: 1 / -1; /* Geht über die volle Breite */
+            height: 50px;        /* Erzeugt den visuellen Abstand im Browser */
+            background: var(--white);
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            background-color: var(--sidebar-bg);
+            color: var(--sidebar-text);
+            /* Padding oben auf 0, da Margin durch PDF/Spacer kommt */
+            padding: 0 25px 30px 25px;
+            border: none;
+        }
+
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            background-color: #333;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            overflow: hidden;
+            border: 3px solid var(--accent-color); 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+        .contact-info {
+            margin-bottom: 35px;
+            font-size: 0.65em; 
+            font-weight: 400;
+        }
+
+        .contact-item {
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            word-break: break-word;
+            line-height: 1.3;
+        }
+        
+        .contact-icon {
+            margin-right: 8px;
+            color: var(--accent-color);
+            min-width: 16px;
+            font-size: 1.1em;
+        }
+
+        .section-title-sidebar {
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #ddd; 
+            padding-bottom: 5px;
+            font-size: 0.85rem; 
+            font-weight: 700;
+            margin-top: 10px; 
+        }
+        
+        .sidebar .section-title-sidebar:first-of-type {
+            margin-top: 0;
+        }
+
+        .skill-group {
+            margin-bottom: 25px;
+            break-inside: avoid; 
+            page-break-inside: avoid;
+        }
+
+        .skill-item {
+            margin-bottom: 8px;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75em; 
+            margin-bottom: 3px;
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background-color: #eee; 
+            border-radius: 2px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .tag {
+            background-color: #f4f4f4;
+            color: var(--text-color);
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.7em;
+            border: 1px solid #e0e0e0;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            /* Padding oben auf 0, damit Inhalt im PDF direkt am 10mm Rand beginnt */
+            padding: 0 40px 35px 40px;
+        }
+
+        header {
+            break-inside: avoid;
+            page-break-inside: avoid;
+            margin-bottom: 25px;
+            /* Kleiner Ausgleich nach oben, falls nötig, sonst 0 */
+            padding-top: 5px; 
+        }
+
+        .header-name {
+            font-size: 1.8em; 
+            text-transform: uppercase;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            line-height: 1;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .header-company {
+            font-size: 1.0em; 
+            color: var(--accent-color);
+            margin-top: 2px;
+            font-weight: 600;
+        }
+
+        .profile-summary {
+            margin-bottom: 35px;
+            color: var(--light-text);
+            background: rgba(227, 229, 229, 0.3);
+            padding: 20px;
+            border-left: 4px solid var(--accent-color);
+            break-inside: avoid;
+            page-break-inside: avoid;
+            font-family: 'Merriweather', serif;
+            font-style: italic;
+            font-size: 0.85em; 
+            line-height: 1.6;
+        }
+
+        .section-title-main {
+            font-size: 1.3em;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 8px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+
+        .job-card {
+            margin-bottom: 25px;
+            position: relative;
+            break-inside: avoid;
+            page-break-inside: avoid;
+            padding-left: 18px;
+            border-left: 1px solid #eee;
+        }
+
+        .job-card::before {
+            content: '';
+            position: absolute;
+            left: -5px; 
+            top: 6px;
+            width: 9px;
+            height: 9px;
+            background: var(--accent-color);
+            border-radius: 50%;
+        }
+
+        .job-role {
+            font-size: 1em;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+
+        .job-meta {
+            font-size: 0.85em;
+            color: var(--light-text);
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .tech-stack-inline {
+            font-size: 0.75em;
+            color: var(--accent-color);
+            font-weight: 700;
+            margin-bottom: 6px;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .job-tasks {
+            margin-bottom: 4px;
+            font-size: 0.9em;
+            color: #444;
+        }
+        
+        .job-tasks p {
+             font-size: 0.9em;
+        }
+
+        .company-size {
+            font-size: 0.75em;
+            color: #aaa;
+            font-style: italic;
+        }
+
+        /* PRINT / PDF STYLES */
+        @media print {
+            .no-print, #downloadBtn, #browserSpacer {
+                display: none !important;
+            }
+            .container {
+                margin: 0;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<button id="downloadBtn" onclick="downloadPDF()">Herunterladen</button>
+
+<div class="container" id="cvContent">
+    <div id="browserSpacer"></div>
+
+    <aside class="sidebar">
+        <div class="profile-img">
+            <span>Foto</span> 
+        </div>
+
+        <h3 class="section-title-sidebar">Kontakt</h3>
+        
+        <div class="contact-info">
+            <div class="contact-item"><span class="contact-icon">✉</span> lucas.falkowsky@typedigital.de</div>
+            <div class="contact-item"><span class="contact-icon">🌐</span> typedigital.de</div>
+            <div class="contact-item"><span class="contact-icon">📍</span> Klinkerberg 9, 86152 Augsburg</div>
+        </div>
+
+        <div class="skill-group">
+            <h3 class="section-title-sidebar">Fähigkeiten</h3>
+            
+            <div class="skill-item">
+                <div class="skill-name"><span>React</span><span>50%</span></div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 50%"></div></div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name"><span>Typescript</span><span>55%</span></div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 55%"></div></div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name"><span>Node.js</span><span>45%</span></div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 45%"></div></div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name"><span>JavaScript</span><span>50%</span></div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 50%"></div></div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name"><span>React Native</span><span>40%</span></div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 40%"></div></div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name"><span>Datenbanken</span><span>40%</span></div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 40%"></div></div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name"><span>Python</span><span>25%</span></div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 25%"></div></div>
+            </div>
+        </div>
+
+        <div class="skill-group">
+            <h3 class="section-title-sidebar">Programme</h3>
+            <div class="tag-cloud">
+                <span class="tag">Figma</span>
+                <span class="tag">Photoshop</span>
+                <span class="tag">Illustrator</span>
+                <span class="tag">After Effects</span>
+                <span class="tag">Rive</span>
+            </div>
+        </div>
+
+        <div class="skill-group">
+            <h3 class="section-title-sidebar">Sprachen</h3>
+            <div class="skill-item">
+                <div class="skill-name"><span>Englisch</span><span>85%</span></div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 85%"></div></div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name"><span>Italienisch</span><span>55%</span></div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 55%"></div></div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name"><span>Französisch</span><span>15%</span></div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 15%"></div></div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header>
+            <h1 class="header-name">Lucas Falkowsky</h1>
+            <h2 class="header-company">typedigital GmbH</h2>
+        </header>
+
+        <section class="profile-summary">
+            <p>Durch meine Projekte bei Typedigital konnte ich hinreichend Erfahrungen mit React, React Native, JavaScript, TypeScript und Node.js sammeln. In multidisziplinären Projekten ermöglichte mir mein Arbeitgeber außerdem das Ausbauen meiner Fähigkeiten in UX/UI Design, Animation und Illustration.</p>
+            <br>
+            <p>Durch meine Fähigkeiten in Kommunikation, Organisation und kritischem sowie kreativem Denken, schaffe ich es, mich schnell in neue Projekte und Teams einzubringen. Mein persönliches Ziel ist es IT-Themen für eine breite Masse verständlich zu machen.</p>
+        </section>
+
+        <section>
+            <h3 class="section-title-main">Projekterfahrung</h3>
+
+            <article class="job-card">
+                <div class="job-role">Junior Fullstack Architect & Projektmanagement</div>
+                <div class="job-meta">Abimanufaktur GmbH / Augsburg | seit 08/2025</div>
+                <span class="tech-stack-inline">UX / UI, Animation, Fullstack Developer</span>
+                <div class="job-tasks">Aufgaben: Projektplanung für UX/UI & Entwicklung</div>
+                <div class="company-size">Größe: &lt;50 Mitarbeiter:innen</div>
+            </article>
+
+            <article class="job-card">
+                <div class="job-role">Fullstack Developer</div>
+                <div class="job-meta">Abimanufaktur GmbH / Augsburg | seit 04/2025</div>
+                <span class="tech-stack-inline">Typescript, React, Node, CSS, Firebase</span>
+                <div class="job-tasks">Aufgaben: Dauerbeauftragung zur Erweiterung der App um aussagekräftige Tests, Beheben von Bugs und Entwickeln neuer Features.</div>
+                <div class="company-size">Größe: &lt;50 Mitarbeiter:innen</div>
+            </article>
+
+             <article class="job-card">
+                <div class="job-role">Fullstack Developer</div>
+                <div class="job-meta">StrengthLab360 GmbH / Hohenwart | 03/2025</div>
+                <span class="tech-stack-inline">Typescript, React, Node, CSS</span>
+                <div class="job-tasks">Aufgaben: Refactoring der Codebase, Implementierung von Servicestrukturen, Consulting für notwendige Anpassungen.</div>
+                <div class="company-size">Größe: &lt;10 Mitarbeiter:innen</div>
+            </article>
+
+            <article class="job-card">
+                <div class="job-role">Fullstack Developer</div>
+                <div class="job-meta">Abimanufaktur GmbH / Augsburg | 08/2024 - 02/2025</div>
+                <span class="tech-stack-inline">Typescript, React, Node, CSS, Firebase</span>
+                <div class="job-tasks">Aufgaben: Refactoring des Error handlings im Backend, Erweiterung der App um aussagekräftige Tests, Beheben von Bugs.</div>
+                <div class="company-size">Größe: &lt;50 Mitarbeiter:innen</div>
+            </article>
+
+            <article class="job-card">
+                <div class="job-role">UX/UI Designer</div>
+                <div class="job-meta">SAFETYTEST GmbH | 08/2024 - 12/2024</div>
+                <span class="tech-stack-inline">Figma</span>
+                <div class="job-tasks">Aufgaben: UX/UI Analyse der bestehenden App, User Flow Mapping für angepasste User-Requirements, Wireframing und Mockup für den neuen User Flow.</div>
+                <div class="company-size">Größe: &lt;200 Mitarbeiter:innen</div>
+            </article>
+
+            <article class="job-card">
+                <div class="job-role">Frontend Developer</div>
+                <div class="job-meta">Backhaus Hackner GmbH | 08/2024 - 02/2025</div>
+                <span class="tech-stack-inline">React, Typescript, Vice, Headless Wordpress</span>
+                <div class="job-tasks">Aufgaben: Database Modelling für headless Wordpress, Entwicklung einer responsiven Nutzeroberfläche anhand eines vom Kunden bereitgestellten Designs.</div>
+                <div class="company-size">Größe: &lt;600 Mitarbeiter:innen</div>
+            </article>
+
+            <article class="job-card">
+                <div class="job-role">UX/UI Designer</div>
+                <div class="job-meta">IGL Umwelt und Gebäudetechnik GmbH & Co. KG | 07/2024 - 11/2024</div>
+                <span class="tech-stack-inline">Figma</span>
+                <div class="job-tasks">Aufgaben: UX/UI Analyse, User Flow Mapping, Low-Fidelity Wireframing, Prototyping & Erstellen eines Click-Dummies.</div>
+                <div class="company-size">Größe: &lt;200 Mitarbeiter:innen</div>
+            </article>
+
+             <article class="job-card">
+                <div class="job-role">Animation Designer</div>
+                <div class="job-meta">Perian GmbH / Augsburg | 07/2024</div>
+                <span class="tech-stack-inline">Rive</span>
+                <div class="job-tasks">Aufgaben: Umsetzen des statischen Designs eines Website Headers in Rive als Animation.</div>
+                <div class="company-size">Größe: &lt;10 Mitarbeiter:innen</div>
+            </article>
+
+            <article class="job-card">
+                <div class="job-role">Backend Developer</div>
+                <div class="job-meta">Greenlight Consulting GmbH / Augsburg | 06/2024</div>
+                <span class="tech-stack-inline">Typescript, React, Node</span>
+                <div class="job-tasks">Aufgaben: Anbindung der HubSpot API für personalisierte Form requests und Performance-Steigerung des Webformulars.</div>
+                <div class="company-size">Größe: &lt;200 Mitarbeiter:innen</div>
+            </article>
+
+            <article class="job-card">
+                <div class="job-role">Fullstack Developer</div>
+                <div class="job-meta">Abimanufaktur GmbH / Augsburg | 03/2024 - 06/2024</div>
+                <span class="tech-stack-inline">Typescript, React, Node, CSS, Firebase</span>
+                <div class="job-tasks">Aufgaben: Konzeption und Entwicklung eines Druckportals auf Frontend-, Backend- und Datenbankebene sowie Entwicklung von Web-Hooks & Anbindung fremder APIs.</div>
+                <div class="company-size">Größe: &lt;50 Mitarbeiter:innen</div>
+            </article>
+
+             <article class="job-card">
+                <div class="job-role">Video Editor & Frontend Developer</div>
+                <div class="job-meta">Takko GmbH / Augsburg | 03/2024 - 09/2024</div>
+                <span class="tech-stack-inline">Adobe PS, AE, Media Encoder, Deno, HTML, CSS, JS</span>
+                <div class="job-tasks">Aufgaben: Animation und Schnitt von Videos geringer Datenmenge für Werbebanner.</div>
+                <div class="company-size">Größe: &lt;20.000 Mitarbeiter:innen</div>
+            </article>
+
+             <article class="job-card">
+                <div class="job-role">Fullstack Developer</div>
+                <div class="job-meta">Lern-Fair e. V. / Augsburg | 10/2023 - 03/2024</div>
+                <span class="tech-stack-inline">Typescript, React, Node, CSS, GraphQL</span>
+                <div class="job-tasks">Aufgaben: Entwicklung eines flexiblen Gamification Features in Front- und Backend.</div>
+                <div class="company-size">Größe: &lt;100 Mitarbeiter:innen</div>
+            </article>
+
+             <article class="job-card">
+                <div class="job-role">Fullstack Developer</div>
+                <div class="job-meta">Lern-Fair e.V. / Augsburg | 05/2023</div>
+                <span class="tech-stack-inline">Typescript, React, Node, CSS, GraphQL, Zoom API</span>
+                <div class="job-tasks">Aufgaben: Einbindung der Zoom API in die Web-Applikation von Lern-Fair.</div>
+                <div class="company-size">Größe: &lt;100 Mitarbeiter:innen</div>
+            </article>
+
+             <article class="job-card">
+                <div class="job-role">Fullstack Developer</div>
+                <div class="job-meta">Gesa GmbH / Augsburg | 05/2022 - 09/2023</div>
+                <span class="tech-stack-inline">Typescript, React, Astro, Tailwind, Directus</span>
+                <div class="job-tasks">Aufgaben: Entwicklung der neuen Website des Kunden.</div>
+                <div class="company-size">Größe: &lt;100 Mitarbeiter:innen</div>
+            </article>
+
+            <article class="job-card">
+                <div class="job-role">Fullstack Developer</div>
+                <div class="job-meta">Abimanufaktur GmbH / Augsburg | seit 09/2022</div>
+                <span class="tech-stack-inline">Typescript, React, Node, CSS, Firebase</span>
+                <div class="job-tasks">Aufgaben: Entwicklung neuer Features im Frontend- und Backend-Bereich.</div>
+                <div class="company-size">Größe: &lt;50 Mitarbeiter:innen</div>
+            </article>
+
+             <article class="job-card">
+                <div class="job-role">Web Developer</div>
+                <div class="job-meta">Soffico GmbH / Augsburg | 05/2021 - 02/2022</div>
+                <span class="tech-stack-inline">JavaScript, PHP</span>
+                <div class="job-tasks">Aufgaben: Verwalten und Weiterentwickeln von Design und Technologie der Website.</div>
+                <div class="company-size">Größe: &lt;100 Mitarbeiter:innen</div>
+            </article>
+
+        </section>
+
+        <section>
+            <h3 class="section-title-main">Ausbildung</h3>
+            <article class="job-card">
+                <div class="job-role">B.A. - Interaktive Medien</div>
+                <div class="job-meta">FH Augsburg</div>
+                <div class="job-tasks">
+                    <p>Seit meinem Studium an der FH Augsburg zähle ich das Web Development zu meinen Passionen. Im breiten Feld der interaktiven Medien hat mich das Planen und Entwickeln von Code begeistert, weshalb ich auch die Evaluation der Thesen meiner Bachelor-Arbeit mithilfe einer eigens entwickelten Plattform zur effizienten Personalplanung durchgeführt habe.</p>
+                </div>
+            </article>
+        </section>
+    </main>
+</div>
+
+<script>
+    function downloadPDF() {
+        const element = document.getElementById('cvContent');
+        const btn = document.getElementById('downloadBtn');
+        const spacer = document.getElementById('browserSpacer');
+        
+        // Button und Spacer ausblenden für den Download-Snapshot
+        btn.style.display = 'none';
+        spacer.style.display = 'none';
+
+        const opt = {
+            // Exakte 10mm Ränder oben/unten, 0 links/rechts
+            margin:       [10, 0, 10, 0], 
+            filename:     'Lebenslauf_Lucas_Falkowsky.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { 
+                scale: 2, 
+                useCORS: true,
+                scrollY: 0 
+            },
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+            pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+        };
+
+        html2pdf().set(opt).from(element).save().then(function() {
+            // Alles wieder anzeigen für die Browser-Ansicht
+            btn.style.display = 'block';
+            spacer.style.display = 'block';
+        });
+    }
+</script>
+
+</body>
+</html>

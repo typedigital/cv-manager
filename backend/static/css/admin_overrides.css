@@ -1,0 +1,44 @@
+/* Load Fonts */
+@font-face {
+    font-family: 'Nexa';
+    src: url('../fonts/Nexa-Light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nexa';
+    src: url('../fonts/Nexa-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Recia';
+    src: url('../fonts/Recia-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Overwrite all */
+body, h1, h2, h3, h4, h5, .brand-link {
+    font-family: 'Nexa', sans-serif !important;
+}
+
+/* Sidebar Header */
+.brand-link {
+    background-color: #171D26 !important;
+}
+.brand-link .brand-text {
+    color: #FF5959 !important;
+    font-weight: 900 !important;
+    text-transform: uppercase;
+}
+
+.btn-primary {
+    background-color: #FF5959 !important;
+    border-color: #FF5959 !important;
+}
+.btn-primary:hover {
+    background-color: #e04e4e !important;
+}
