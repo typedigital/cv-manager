@@ -48,7 +48,7 @@ function App() {
       margin: [10, 0, 10, 0],
       filename: `Lebenslauf_${name}.pdf`,
       image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true, scrollY: 0 },
+      html2canvas: { scale: 2, useCORS: true, scrollY: 0, letterRenderung: true },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
     };
 

@@ -101,7 +101,10 @@ export const Tag = styled.span`
   font-weight: 350;
 `;
 
-export const SkillGroup = styled.div``;
+export const SkillGroup = styled.div`
+  break-inside: avoid;
+  page-break-inside: avoid;
+`;
 
 export const SkillItem = styled.div`
   margin-bottom: 8px;
@@ -199,6 +202,7 @@ export const JobCard = styled.article`
   position: relative;
   padding-left: 18px;
   border-left: 1px solid #eee;
+
   break-inside: avoid;
   page-break-inside: avoid;
 
