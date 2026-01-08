@@ -95,8 +95,8 @@ export const Resume = forwardRef<HTMLDivElement, ResumeProps>(({ data }, ref) =>
       <MainContent>
         <Header>
           <h1>
-            <HeaderFirstName>{basics.name.first} </HeaderFirstName>
-            <HeaderLastName>{basics.name.last}</HeaderLastName>
+            <HeaderFirstName $charCount={basics.name.first.length}>{basics.name.first} </HeaderFirstName>
+            <HeaderLastName $charCount={basics.name.last.length}>{basics.name.last}</HeaderLastName>
           </h1>
           <HeaderLabel>{basics.label}</HeaderLabel>
         </Header>

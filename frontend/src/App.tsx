@@ -39,7 +39,7 @@ function App() {
     if (!resumeRef.current || !currentCV) return;
 
     const element = resumeRef.current;
-    const spacer = element.querySelector('#browserSpacer') as HTMLElement;
+    const spacer = element.querySelector('.no-print') as HTMLElement;
     if(spacer) spacer.style.display = 'none';
 
     const name = `${currentCV.basics.name.first} ${currentCV.basics.name.last}`.replace(/\s+/g, '_');

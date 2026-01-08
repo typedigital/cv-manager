@@ -1,5 +1,16 @@
 import styled from 'styled-components';
 
+const getFontSize = (charCount: number) => {
+  if (charCount >= 20) return '1.5em';
+  if (charCount >= 15) return '1.8em';
+  if (charCount >= 10) return '2em';
+  return '2.4em';
+};
+
+interface NameProps {
+  $charCount: number;
+}
+
 export const Container = styled.div`
   width: 210mm;
   min-height: 297mm;
@@ -146,15 +157,21 @@ export const Header = styled.header`
   }
 `;
 
-export const HeaderFirstName = styled.span`
-  font-size: 2.4em;
+const HeaderName = styled.span<NameProps>`
   text-transform: uppercase;
+  font-size: ${props => getFontSize(props.$charCount)};  text-transform: uppercase;
   color: var(--primary-color);
-  font-weight: 500;
   letter-spacing: -0.5px;
+
+  display: inline-block; /* Wichtig für Transformations */
+  transition: font-size 0.2s ease; /* Sieht schöner aus beim Laden */
 `;
 
-export const HeaderLastName = styled(HeaderFirstName)`
+export const HeaderFirstName = styled(HeaderName)`
+  font-weight: 500;
+`;
+
+export const HeaderLastName = styled(HeaderName)`
   font-weight: 900;
 `;
 
@@ -189,6 +206,8 @@ export const SectionTitleMain = styled.h3`
   font-weight: 800;
   letter-spacing: 2px;
   margin-top: 10px;
+
+  break-after: avoid;
 `;
 
 export const CardList = styled.div`
