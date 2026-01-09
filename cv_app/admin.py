@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import CV, WorkExperience, Education, SkillCategory, SkillItem
+from rest_framework.authtoken.models import TokenProxy
 
 class WorkInline(admin.StackedInline):
     model = WorkExperience
@@ -46,3 +47,9 @@ class SkillCategoryAdmin(admin.ModelAdmin):
 class CVAdmin(admin.ModelAdmin):
     inlines = [WorkInline, EducationInline, SkillCategoryInline]
     list_display = ('first_name', 'last_name', 'label')
+
+# --- Removes Access to Auth Token Table ---
+try:
+    admin.site.unregister(TokenProxy)
+except admin.sites.NotRegistered:
+    pass
