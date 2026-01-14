@@ -34,6 +34,9 @@ body, h1, h2, h3, h4, h5, .brand-link {
     font-weight: 900 !important;
     text-transform: uppercase;
 }
+.brand-link .brand-image {
+    border-radius: 0 !important;
+}
 
 .btn-primary {
     background-color: #FF5959 !important;
