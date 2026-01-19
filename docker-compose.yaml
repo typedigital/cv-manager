@@ -1,0 +1,13 @@
+services:
+  cv-manager:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cv-manager
+    # environment:
+      # LOG_LEVEL: DEBUG
+    # volumes:
+      # - ./src:/app/src # for development
+    restart: unless-stopped
+    ports:
+      - 8000:8000
