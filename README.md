@@ -18,118 +18,121 @@ The system allows résumés to be maintained via a convenient admin panel and ma
 * **Vite:** Fast build tool and dev server.
 * **Styled Components:** CSS-in-JS for modular styling.
 * **html2pdf.js:** Client-side PDF generation.
+* **Nginx:** Production web server for the frontend.
+
+### Infrastructure
+* **Docker & Docker Compose:** Containerization and orchestration.
 
 ---
 
-## 🚀 Installation & Setup
+## 🚀 Quick Start with Docker
 
-### Prerequisites
-Make sure the following tools are installed:
-* [Python](https://www.python.org/) (version 3.10 or newer recommended)
-* [Node.js](https://nodejs.org/) (version 16 or newer)
-* [Git](https://git-scm.com/)
+The easiest way to get the project running is using Docker.
 
-### 1. Clone the repository
+---
+
+### 1. Prerequisites
+
+- Docker Desktop installed and running
+
+---
+
+### 2. Start the Application
+
+Clone the repository and run:
 
 ```bash
-git clone <your-repo-url>
-cd cv-manager
+docker-compose up --build
 ```
 
-### 2. Set up the backend (Django)
+---
 
-#### Create a virtual environment
+### 3. Initialize the Backend
+
+Open a new terminal and run the following commands to set up the database and create an admin user:
+
 ```bash
-python -m venv venv
+# Run migrations
+docker exec -it cv-manager python manage.py migrate
+
+# Create admin user
+docker exec -it cv-manager python manage.py createsuperuser
 ```
 
-#### Activate the virtual environment
-```bash
-source venv/bin/activate
-```
+---
 
-#### Install dependencies
-```bash
-pip install django djangorestframework django-cors-headers django-jazzmin pillow
-```
+### 4. Access the Project
 
-#### Initialize the database
+- **Frontend:** http://localhost:5173  
+- **Backend Admin:** http://localhost:8000/admin
+
+---
+
+## 🛠 Manual Installation (Development)
+
+If you prefer to run the services locally without Docker:
+
+---
+
+### Backend (Django)
+
 ```bash
 cd backend
-python manage.py makemigrations
+
+python -m venv .venv
+source .venv/bin/activate
+
+pip install -r requirements.txt
+# or: uv pip sync
+
 python manage.py migrate
-```
-
-#### Create an admin user
-```bash
-python manage.py createsuperuser
-```
-
-### Start the server
-```bash
 python manage.py runserver
 ```
 
-Backend: http://127.0.0.1:8000
+---
 
-### 3. Set up the frontend (React)
+### Frontend (React)
 
 ```bash
 cd frontend
+
 npm install
 npm run dev
 ```
 
-Frontend: http://localhost:5173
-
-## 📖 Usage
-
-### Step 1: Manage data (CMS)
-Open http://127.0.0.1:8000/admin  
-Create and manage CVs via the admin panel.
-
-### Step 2: View & export résumé
-Open http://localhost:5173  
-Select a CV and download it as a PDF.
+---
 
 ## 📂 Project Structure
 
 ```text
 cv-manager/
 ├── backend/                # Django backend
-│   ├── cv_app/             # Main app (business logic)
-│   │   ├── admin.py        # CMS configuration (list views, filters)
-│   │   ├── apps.py         # App configuration
-│   │   ├── models.py       # Database structure (CV, WorkExperience, etc.)
-│   │   ├── serializers.py  # Converts database objects to JSON
-│   │   ├── urls.py         # API routes (e.g. /api/cvs/)
-│   │   └── views.py        # API logic (ViewSets)
-│   ├── media/              # User uploads (profile images)
-│   ├── static/             # Admin assets (fonts, logos, CSS)
-│   ├── templates/          # Overridden admin templates
+│   ├── cv_app/             # Business logic & Models
 │   ├── manage.py           # Django CLI
-│   └── backend/            # Global settings & URLs
-│
+│   └── Dockerfile          # Multi-stage build (uv + python-alpine)
 ├── frontend/               # React frontend
-│   ├── public/             # Static frontend files
-│   ├── src/
-│   │   ├── components/     # React components (Login, Resume, Sidebar)
-│   │   ├── assets/         # Fonts (Nexa, Recia)
-│   │   ├── hooks/          # Custom hooks (useCVLoader)
-│   │   └── types.ts        # TypeScript interfaces
-│   └── package.json
-│
-├── .gitignore              # Git ignore rules
-└── README.md               # Documentation
-
+│   ├── src/                # UI Components & Hooks
+│   ├── Dockerfile          # Multi-stage build (Node + Nginx)
+│   └── nginx.conf          # Nginx proxy configuration
+├── docker-compose.yaml     # Orchestration for both services
+└── README.md
 ```
 
-### Import example CVs
-```bash
-python manage.py import_cvs
-```
+---
 
-## Design Customization
+## 📖 Key Configuration Note (CSRF & CORS)
 
-Frontend styles: `src/App.css` and styled components  
-Admin styles: `backend/static/css/admin_overrides.css`
+When running in Docker, the frontend (Nginx) acts as a reverse proxy.  
+To ensure the login works correctly, the following settings are pre-configured:
+
+- Nginx forwards requests from  
+  `http://localhost:5173/api-token-auth/` → backend
+- Django allows `http://localhost:5173` in `CSRF_TRUSTED_ORIGINS`
+
+---
+
+## 🖨 Usage
+
+- **Admin:** Log in at `/admin` and add your work experience and skills  
+- **View:** Open the frontend to see the generated CV  
+- **Export:** Use the **Download PDF** button to trigger the `html2pdf.js` generation

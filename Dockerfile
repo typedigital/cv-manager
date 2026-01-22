@@ -43,7 +43,6 @@ ENV PATH="${VIRTUAL_ENV}/bin:$PATH"
 
 COPY --from=builder ${VIRTUAL_ENV} ${VIRTUAL_ENV}
 COPY ./backend/ /app/backend
-COPY ./frontend/ /app/frontend
 COPY ./cv_app/ /app/cv_app
 COPY ./manage.py /app/manage.py
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { CVData } from '../types';
 
-const API_URL = import.meta.env.DEV ? 'http://127.0.0.1:8000/api/cvs/' : '/api/cvs/';
+const API_URL = 'http://127.0.0.1:8000/api/cvs/';
 
 interface CVFile {
   file: string;
