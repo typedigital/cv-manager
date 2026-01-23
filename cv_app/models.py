@@ -13,6 +13,7 @@ class CV(models.Model):
     email = models.EmailField()
     website = models.URLField(blank=True)
     summary = models.TextField()
+    experience = models.TextField(blank=True, default="", verbose_name="Erfahrung & Highlights")
     
     # Location
     address = models.CharField(max_length=200, blank=True)

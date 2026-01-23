@@ -28,7 +28,9 @@ import {
   JobMeta,
   TechStack,
   JobTasks,
-  CompanySize
+  CompanySize,
+  Experience,
+  SkillBlock,
 } from './components';
 
 interface ResumeProps {
@@ -36,7 +38,8 @@ interface ResumeProps {
 }
 
 export const Resume = forwardRef<HTMLDivElement, ResumeProps>(({ data }, ref) => {
-  const { basics, skills, work, education, style } = data;
+  const { basics, skills, work, education, experience, style } = data;
+  console.log(data)
 
   const customStyles = {
     '--primary-color': style?.colors?.primary || '#171D26',
@@ -66,7 +69,7 @@ export const Resume = forwardRef<HTMLDivElement, ResumeProps>(({ data }, ref) =>
         </ContactInfo>
 
         {skills.map((cat, idx) => (
-            <div key={idx}>
+            <SkillBlock key={idx} className="keep-together">
                 <SectionTitleSidebar>{cat.category}</SectionTitleSidebar>
                 {cat.category.includes('Tools') || cat.category.includes('Programme') ? (
                     <TagCloud>
@@ -88,7 +91,7 @@ export const Resume = forwardRef<HTMLDivElement, ResumeProps>(({ data }, ref) =>
                         ))}
                     </SkillGroup>
                 )}
-            </div>
+            </SkillBlock>
         ))}
       </Sidebar>
 
@@ -134,6 +137,14 @@ export const Resume = forwardRef<HTMLDivElement, ResumeProps>(({ data }, ref) =>
             </JobCard>
           ))}
         </section>
+
+        {experience && (
+          <section>
+            <Experience>
+              <p>{basics.summary}</p>
+            </Experience>
+          </section>
+        )}
       </MainContent>
     </Container>
   );

@@ -1,0 +1,15 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<div style="padding: 20px; background: white; max-width: 600px;">
+    <h2>CV JSON Import</h2>
+    <p>Laden Sie hier eine JSON-Datei hoch. existierende CVs (basierend auf Name) werden aktualisiert.</p>
+    
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <br>
+        <input type="submit" value="Import starten" class="default" style="padding: 10px 20px; cursor: pointer;">
+    </form>
+</div>
+{% endblock %}

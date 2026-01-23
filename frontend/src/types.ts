@@ -56,6 +56,7 @@ export interface CVData {
   skills: SkillCategory[];
   work: WorkExperience[];
   education: Education[];
+  experience?: string;
   style?: CVStyle;
 }
 
@@ -72,5 +73,9 @@ export interface Html2PdfOptions {
     unit?: string;
     format?: string | [number, number];
     orientation?: "portrait" | "landscape";
+  };
+  pagebreak: { 
+    mode: string[];
+    avoid: string;
   };
 }

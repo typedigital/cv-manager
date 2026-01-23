@@ -65,6 +65,16 @@ export const ProfileImage = styled.div`
   }
 `;
 
+export const SkillBlock = styled.div`
+  margin-bottom: 20px;
+  position: relative;
+  
+  break-inside: avoid;
+  page-break-inside: avoid;
+  
+  display: block;
+`;
+
 export const SectionTitleSidebar = styled.h3`
   color: var(--accent-color);
   text-transform: uppercase;
@@ -75,6 +85,9 @@ export const SectionTitleSidebar = styled.h3`
   font-size: 0.75rem;
   font-weight: 800;
   margin-top: 30px;
+
+  break-after: avoid;
+  page-break-after: avoid;
 `;
 
 export const ContactInfo = styled.div`
@@ -100,6 +113,8 @@ export const TagCloud = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+  break-inside: avoid;
+  page-break-inside: avoid;
 `;
 
 export const Tag = styled.span`
@@ -120,6 +135,7 @@ export const SkillGroup = styled.div`
 export const SkillItem = styled.div`
   margin-bottom: 8px;
   break-inside: avoid;
+  page-break-inside: avoid;
 `;
 
 export const SkillHeader = styled.div`
@@ -127,6 +143,9 @@ export const SkillHeader = styled.div`
   justify-content: space-between;
   font-size: 0.75em;
   margin-bottom: 3px;
+  
+  break-after: avoid;
+  page-break-after: avoid;
 `;
 
 export const ProgressBar = styled.div`
@@ -195,6 +214,8 @@ export const ProfileSummary = styled.section`
   font-size: 0.85em;
   line-height: 1.6;
 `;
+
+export const Experience = styled(ProfileSummary)``;
 
 export const SectionTitleMain = styled.h3`
   font-size: 1em;
