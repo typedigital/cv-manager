@@ -51,6 +51,7 @@ class CVSerializer(serializers.ModelSerializer):
         fields = ['basics', 'work', 'education', 'skills', 'style']
 
     def get_basics(self, obj):
+        print(f"experience: {obj.experience}")
         request = self.context.get('request')
         image_url = ""
         if obj.image:
@@ -73,7 +74,8 @@ class CVSerializer(serializers.ModelSerializer):
                 "city": obj.city,
                 "countryCode": obj.country_code
             },
-            "summary": obj.summary
+            "summary": obj.summary,
+            "experience": obj.experience
         }
 
     def get_style(self, obj):
