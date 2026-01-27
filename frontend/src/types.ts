@@ -11,6 +11,7 @@ export interface CVBasics {
     countryCode: string;
   };
   summary: string;
+  experience?: string;
 }
 
 export interface SkillItem {
@@ -56,7 +57,6 @@ export interface CVData {
   skills: SkillCategory[];
   work: WorkExperience[];
   education: Education[];
-  experience?: string;
   style?: CVStyle;
 }
 

@@ -66,7 +66,7 @@ export const ProfileImage = styled.div`
 `;
 
 export const SkillBlock = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 60px;
   position: relative;
   
   break-inside: avoid;
@@ -93,6 +93,7 @@ export const SectionTitleSidebar = styled.h3`
 export const ContactInfo = styled.div`
   font-size: x-small;
   font-weight: 300;
+  margin-bottom: 60px;
 `;
 
 export const ContactItem = styled.div`
@@ -146,6 +147,16 @@ export const SkillHeader = styled.div`
   
   break-after: avoid;
   page-break-after: avoid;
+`;
+
+export const SkillLabel = styled.div`
+  padding: 4px 10px;
+  background: #f4f4f4;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+  justify-content: center;
+  display: flex;
+  font-size: 0.75em;
 `;
 
 export const ProgressBar = styled.div`
@@ -215,8 +226,6 @@ export const ProfileSummary = styled.section`
   line-height: 1.6;
 `;
 
-export const Experience = styled(ProfileSummary)``;
-
 export const SectionTitleMain = styled.h3`
   font-size: 1em;
   color: var(--primary-color);
@@ -238,7 +247,7 @@ export const CardList = styled.div`
 `;
 
 export const JobCard = styled.article`
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   position: relative;
   padding-left: 18px;
   border-left: 1px solid #eee;
@@ -270,6 +279,14 @@ export const JobMeta = styled.div`
   font-weight: 350;
   color: #666;
   font-size: 0.65em;
+`;
+
+export const Spacer = styled.div`
+  height: 25px;
+`;
+
+export const Chapter = styled.div`
+  margin-bottom: 35px;
 `;
 
 export const TechStack = styled.span`

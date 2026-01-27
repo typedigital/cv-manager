@@ -29,8 +29,10 @@ import {
   TechStack,
   JobTasks,
   CompanySize,
-  Experience,
   SkillBlock,
+  Chapter,
+  Spacer,
+  SkillLabel,
 } from './components';
 
 interface ResumeProps {
@@ -38,7 +40,7 @@ interface ResumeProps {
 }
 
 export const Resume = forwardRef<HTMLDivElement, ResumeProps>(({ data }, ref) => {
-  const { basics, skills, work, education, experience, style } = data;
+  const { basics, skills, work, education, style } = data;
   console.log(data)
 
   const customStyles = {
@@ -79,13 +81,22 @@ export const Resume = forwardRef<HTMLDivElement, ResumeProps>(({ data }, ref) =>
                     <SkillGroup>
                         {cat.items.map((item, i) => (
                             <SkillItem key={i}>
+                                {!item.level ? (
+                                  <SkillLabel>
+                                    {item.name}
+                                  </SkillLabel>
+                                ) : (
+                                  <>
                                 <SkillHeader>
                                     <span>{item.name}</span><span>{item.level}</span>
                                 </SkillHeader>
+                                
                                 {item.level && (
                                     <ProgressBar>
                                         <ProgressFill $level={item.level} />
                                     </ProgressBar>
+                                )}
+                                  </>
                                 )}
                             </SkillItem>
                         ))}
@@ -127,22 +138,25 @@ export const Resume = forwardRef<HTMLDivElement, ResumeProps>(({ data }, ref) =>
           </CardList>
         </section>
 
+        <Spacer />
+
         <section>
           <SectionTitleMain>Ausbildung</SectionTitleMain>
           {education.map((edu, idx) => (
-            <JobCard key={idx}>
+            <Chapter key={idx}>
               <JobRole>{edu.studyType} - {edu.area}</JobRole>
               <JobMeta>{edu.institution}</JobMeta>
               <JobTasks>{edu.summary}</JobTasks>
-            </JobCard>
+            </Chapter>
           ))}
         </section>
 
-        {experience && (
+        {basics.experience && (
           <section>
-            <Experience>
-              <p>{basics.summary}</p>
-            </Experience>
+            <Chapter>
+            <SectionTitleMain>Erfahrung</SectionTitleMain>
+            <JobTasks>{basics.experience}</JobTasks>
+            </Chapter>
           </section>
         )}
       </MainContent>

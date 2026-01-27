@@ -34,6 +34,7 @@ function App() {
   const resumeRef = useRef<HTMLDivElement>(null);
 
   const currentCV = selectedCV || (cvList.length > 0 ? cvList[0].data : null);
+  console.log(currentCV);
 
   const handleDownload = () => {
     if (!resumeRef.current || !currentCV) return;
