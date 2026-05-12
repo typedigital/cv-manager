@@ -18,12 +18,13 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.authtoken import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('cv_app.urls')),
-    path('api-token-auth/', views.obtain_auth_token),
+    path('api-token-auth/', csrf_exempt(views.obtain_auth_token)),
 ]
 
 # Diese Zeile ist entscheidend für Bilder im Entwicklungsmodus!

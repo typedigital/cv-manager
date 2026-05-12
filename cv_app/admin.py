@@ -1,4 +1,5 @@
 import json
+import nested_admin
 from django.contrib import admin
 from django.urls import path
 from django.shortcuts import render, redirect
@@ -7,21 +8,53 @@ from django import forms
 from django.utils.text import slugify
 from django.http import HttpResponseRedirect
 
-# Importiere deine Models
 from .models import CV, WorkExperience, Education, SkillCategory, SkillItem
 
-# 1. Ein einfaches Formular für den Datei-Upload
+
 class JsonImportForm(forms.Form):
     json_file = forms.FileField(label="CV JSON Datei auswählen")
 
+
+class SkillItemInline(nested_admin.NestedTabularInline):
+    model = SkillItem
+    extra = 0
+    fields = ('name', 'level')
+
+    def get_formset(self, request, obj=None, **kwargs):
+        formset = super().get_formset(request, obj, **kwargs)
+        formset.form.base_fields['name'].widget.attrs['placeholder'] = 'Skill (z.B. React)'
+        formset.form.base_fields['level'].widget.attrs['placeholder'] = 'Level (z.B. 80%)'
+        return formset
+
+
+class SkillCategoryInline(nested_admin.NestedStackedInline):
+    model = SkillCategory
+    extra = 0
+    fields = ('name',)
+    inlines = [SkillItemInline]
+
+
+class WorkExperienceInline(nested_admin.NestedStackedInline):
+    model = WorkExperience
+    extra = 0
+    fields = ('company', 'position', 'location', 'start_date', 'end_date', 'current', 'company_size', 'tech_stack', 'summary')
+
+
+class EducationInline(nested_admin.NestedStackedInline):
+    model = Education
+    extra = 0
+    fields = ('institution', 'study_type', 'area', 'summary')
+
+
 @admin.register(CV)
-class CVAdmin(admin.ModelAdmin):
-    # Deine bisherigen Einstellungen...
+class CVAdmin(nested_admin.NestedModelAdmin):
     list_display = ('first_name', 'last_name', 'label', 'email')
     search_fields = ('first_name', 'last_name')
-    
-    # Custom Template, um den Button oben rechts anzuzeigen
+    inlines = [WorkExperienceInline, EducationInline, SkillCategoryInline]
     change_list_template = "admin/cv_change_list.html"
+
+    class Media:
+        js = ('js/cv_admin_accordions.js',)
 
     def get_urls(self):
         urls = super().get_urls()

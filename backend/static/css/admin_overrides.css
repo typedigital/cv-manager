@@ -45,3 +45,321 @@ body, h1, h2, h3, h4, h5, .brand-link {
 .btn-primary:hover {
     background-color: #e04e4e !important;
 }
+
+/* ── Nested Admin: Outer inline group ─────────────────────────────── */
+.djn-group {
+    margin-bottom: 0 !important;
+}
+
+.djn-group > h2 {
+    font-family: 'Nexa', sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em;
+    padding: 8px 12px !important;
+    margin: 0 !important;
+    background-color: #171D26 !important;
+    color: #fff !important;
+    border-radius: 4px 4px 0 0;
+    cursor: pointer;
+}
+
+/* ── Nested Admin: Inner (nested) group — SkillItems inside SkillCategory ── */
+.djn-group-nested {
+    border: none !important;
+    margin: 4px 0 !important;
+    background-color: transparent !important;
+}
+
+.djn-group-nested > h3,
+.djn-group-nested .djn-collapse-handler {
+    font-family: 'Nexa', sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.04em;
+    padding: 6px 10px !important;
+    margin: 0 !important;
+    background-color: transparent !important;
+    color: #6c757d !important;
+}
+
+/* ── Nested Admin: Individual items ───────────────────────────────── */
+.djn-items .inline-related {
+    width: 100%;
+    border: none !important;
+    border-top: 1px solid #f1f3f5 !important;
+    border-radius: 0 !important;
+    margin-bottom: 0 !important;
+    background-color: transparent !important;
+}
+
+.djn-items .inline-related h3 {
+    font-family: 'Nexa', sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    background-color: transparent !important;
+    color: #171D26 !important;
+    padding: 8px 10px 4px !important;
+    margin: 0 !important;
+    border-bottom: none !important;
+}
+
+/* ── Delete in stacked inline header: rechts ausgerichtet als Button ── */
+.djn-items .inline-related h3,
+.inline-group .inline-related h3 {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+}
+
+.djn-items .inline-related h3 .delete,
+.inline-group .inline-related h3 .delete,
+.djn-items .inline-related h3 span.delete,
+.inline-group .inline-related h3 span.delete {
+    margin-left: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px;
+}
+
+/* Checkbox verstecken, stattdessen nur das Label als Button zeigen */
+.djn-items .inline-related h3 .delete input[type="checkbox"],
+.inline-group .inline-related h3 .delete input[type="checkbox"] {
+    display: none !important;
+}
+
+.djn-items .inline-related h3 .delete label,
+.inline-group .inline-related h3 .delete label {
+    cursor: pointer !important;
+    background-color: #FF5959 !important;
+    color: #fff !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    font-family: 'Nexa', sans-serif !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em;
+    padding: 2px 8px !important;
+    border-radius: 3px !important;
+    border: none !important;
+    line-height: 1.6 !important;
+    transition: background-color 0.15s ease;
+    user-select: none;
+}
+
+.djn-items .inline-related h3 .delete label:hover,
+.inline-group .inline-related h3 .delete label:hover {
+    background-color: #c0392b !important;
+}
+
+/* Wenn die Checkbox gecheckt ist (zum Löschen markiert): visuelles Feedback */
+.djn-items .inline-related h3 .delete input[type="checkbox"]:checked + label,
+.inline-group .inline-related h3 .delete input[type="checkbox"]:checked + label {
+    background-color: #c0392b !important;
+    text-decoration: line-through;
+}
+
+/* ── Nested Admin: "Add another" Button ──────────────────────────── */
+a.djn-add-handler {
+    display: inline-block !important;
+    background-color: #FF5959 !important;
+    color: #fff !important;
+    font-family: 'Nexa', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 11px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em;
+    padding: 5px 12px !important;
+    border-radius: 4px !important;
+    border: none !important;
+    text-decoration: none !important;
+    transition: background-color 0.15s ease;
+}
+
+a.djn-add-handler:hover {
+    background-color: #e04e4e !important;
+    color: #fff !important;
+    text-decoration: none !important;
+}
+
+/* ── Nested Admin: Drag-handle & Sortable placeholder ────────────── */
+.djn-drag-handler {
+    opacity: 0.4;
+}
+.djn-drag-handler:hover {
+    opacity: 0.9;
+}
+
+.djn-group .ui-sortable-placeholder,
+.nested-placeholder {
+    background-color: #ffd5d5 !important;
+    border: 2px dashed #FF5959 !important;
+    border-radius: 4px;
+}
+
+/* ── Tabular Inline (djn-table): Original-Spalte verstecken ──────── */
+table.djn-table td.original,
+table.djn-table th.original {
+    display: none !important;
+}
+
+/* ── Tabular Inline: Header-Zeile ────────────────────────────────── */
+table.djn-table thead.djn-thead th {
+    font-family: 'Nexa', sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.04em;
+    color: #6c757d !important;
+    background-color: #f8f9fa !important;
+    border-bottom: 2px solid #dee2e6 !important;
+    padding: 6px 10px !important;
+    vertical-align: middle !important;
+    white-space: nowrap;
+}
+
+/* ── Tabular Inline: tr transparent machen → td aligned mit thead ── */
+tr.djn-tr.form-row.has_original {
+    display: contents !important;
+}
+
+/* ── Tabular Inline: Alle td's (jetzt direkte tbody-Kinder) ─────── */
+table.djn-table tbody.djn-tbody td {
+    vertical-align: middle !important;
+    padding: 5px 10px !important;
+    border-bottom: none !important;
+}
+
+/* ── Tabular Inline: Input-Felder ────────────────────────────────── */
+table.djn-table td.djn-td input[type="text"],
+table.djn-table td.djn-td input[type="number"],
+table.djn-table td.djn-td select,
+table.djn-table td.djn-td textarea {
+    border: 1px solid #ced4da !important;
+    border-radius: 3px !important;
+    padding: 5px 8px !important;
+    font-size: 13px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+}
+
+/* ── Tabular Inline: Delete-Zelle (alle Klassen-Varianten) ──────── */
+table.djn-table td.delete,
+table.djn-table td.djn-delete-handler {
+    text-align: center !important;
+    vertical-align: middle !important;
+    width: 60px !important;
+    padding: 0 10px !important;
+}
+
+table.djn-table td.delete input[type="checkbox"],
+table.djn-table td.djn-delete-handler input[type="checkbox"] {
+    display: block !important;
+    margin: 0 auto !important;
+    width: 16px !important;
+    height: 16px !important;
+    cursor: pointer !important;
+    accent-color: #FF5959;
+}
+
+/* ── Tabular Inline: "Remove"-Link bei neuen Einträgen ───────────── */
+table.djn-table td.delete a.djn-remove-handler {
+    color: #FF5959 !important;
+    font-family: 'Nexa', sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    text-decoration: none !important;
+    white-space: nowrap;
+}
+
+table.djn-table td.delete a.djn-remove-handler:hover {
+    color: #c0392b !important;
+    text-decoration: underline !important;
+}
+
+/* ── General Tab: Card-Wrapper entfernen ─────────────────────────────────── */
+
+#general-tab .card {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+#general-tab .card .p-5 {
+    padding: 0 !important;
+}
+
+/* ── Accordion: General Tab Sektionen ────────────────────────────────────── */
+
+.cv-section {
+    width: 100%;
+    border: none;
+    border-top: 1px solid #f1f3f5;
+    border-radius: 0;
+    margin-bottom: 0;
+    background-color: transparent;
+}
+
+.cv-section-header {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px 4px;
+    background-color: transparent;
+    font-family: 'Nexa', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #171D26;
+    cursor: pointer;
+    user-select: none;
+    opacity: 0.4;
+    transition: opacity 0.15s ease;
+}
+
+.cv-section-header:hover {
+    opacity: 0.9;
+}
+
+.cv-section-icon {
+    display: inline-block;
+    font-size: 9px;
+    color: #adb5bd;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+    margin-right: 6px;
+}
+
+.cv-section-collapsed .cv-section-icon {
+    transform: rotate(-90deg);
+}
+
+.cv-section-content {
+    padding: 0;
+}
+
+.cv-section-collapsed .cv-section-content {
+    display: none;
+}
+
+/* ── Accordion: Inline-Items Toggle-Icon ─────────────────────────────────── */
+
+.cv-inline-icon {
+    display: inline-block;
+    font-size: 9px;
+    color: #adb5bd;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+    margin-right: 6px;
+}
+
+.cv-inline-icon--collapsed {
+    transform: rotate(-90deg);
+}
+
+/* Inline-h3 als klickbar markieren */
+.djn-items .inline-related h3.djn-drag-handler {
+    cursor: pointer !important;
+    user-select: none !important;
+}

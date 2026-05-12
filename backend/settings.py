@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'nested_admin',
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
@@ -161,6 +162,11 @@ JAZZMIN_SETTINGS = {
     'search_model': 'cv_app.CV',
     'user_avatar': None,
     'show_ui_builder': True,
+    'changeform_format': 'horizontal_tabs',
+    'changeform_format_overrides': {
+        'auth.user': 'collapsible',
+        'auth.group': 'collapsible',
+    },
 
     'icons': {
         # Default App Icons

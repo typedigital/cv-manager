@@ -38,12 +38,15 @@ class WorkExperience(models.Model):
     current = models.BooleanField(default=False)
     summary = models.TextField()
     company_size = models.CharField(max_length=50, blank=True)
-    
+
     # Tech Stack als einfacher Text (kommagetrennt) oder ManyToMany
     tech_stack = models.CharField(max_length=500, blank=True, help_text="Kommagetrennt")
 
     class Meta:
         ordering = ['-start_date']
+
+    def __str__(self):
+        return f"{self.position} @ {self.company}"
 
 class Education(models.Model):
     cv = models.ForeignKey(CV, related_name='education', on_delete=models.CASCADE)
@@ -52,11 +55,20 @@ class Education(models.Model):
     study_type = models.CharField(max_length=100)
     summary = models.TextField(blank=True)
 
+    def __str__(self):
+        return f"{self.study_type} in {self.area} – {self.institution}"
+
 class SkillCategory(models.Model):
     cv = models.ForeignKey(CV, related_name='skill_categories', on_delete=models.CASCADE)
     name = models.CharField(max_length=100, help_text="Development, Sprachen, etc.")
+
+    def __str__(self):
+        return self.name
 
 class SkillItem(models.Model):
     category = models.ForeignKey(SkillCategory, related_name='items', on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     level = models.CharField(max_length=50, blank=True, help_text="z.B. 80% oder leer lassen für Tags")
+
+    def __str__(self):
+        return self.name
