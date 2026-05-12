@@ -25,3 +25,6 @@ frontend/.env
 frontend/.env.local
 frontend/npm-debug.log*
 frontend/yarn-error.log*
+
+# --- Local overrides ---
+docker-compose.override.yml

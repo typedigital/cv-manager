@@ -47,4 +47,4 @@ RUN mkdir -p /app/backend/data /app/backend/media
 RUN DJANGO_SECRET_KEY=collectstatic-build-dummy /app/.venv/bin/python manage.py collectstatic --noinput
 
 # RUN python -m compileall /app
-CMD ["/app/.venv/bin/gunicorn", "backend.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "2"]
+CMD ["/bin/sh", "-c", "/app/.venv/bin/python manage.py migrate --noinput && /app/.venv/bin/gunicorn backend.wsgi:application --bind 0.0.0.0:8000 --workers 2"]

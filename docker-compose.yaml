@@ -15,8 +15,8 @@ services:
     build:
       context: .
       dockerfile: frontend/Dockerfile
-    ports:
-      - "80:80"
+    expose:
+      - "80"
     depends_on:
       - cv-manager
     volumes:
