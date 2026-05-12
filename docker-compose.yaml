@@ -5,14 +5,23 @@ services:
       dockerfile: Dockerfile
     container_name: cv-manager
     restart: unless-stopped
-    ports:
-      - 8000:8000
+    env_file:
+      - .env
+    volumes:
+      - cv_data:/app/backend/data
+      - cv_media:/app/backend/media
 
   cv-manager-frontend:
     build:
       context: .
       dockerfile: frontend/Dockerfile
     ports:
-      - "5173:80"
+      - "80:80"
     depends_on:
       - cv-manager
+    volumes:
+      - cv_media:/app/backend/media
+
+volumes:
+  cv_data:
+  cv_media:

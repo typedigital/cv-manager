@@ -3,6 +3,7 @@
 .vscode/
 .idea/
 *.log
+.env
 
 # --- Python / Django (Backend) ---
 backend/venv/

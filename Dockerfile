@@ -5,11 +5,7 @@ FROM ${IMAGE} AS builder
 RUN apk add --quiet --no-cache \
     build-base \
     libffi-dev \
-    openssh \
-    git \
     gcc
-
-RUN mkdir -p -m 0600 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
 
 RUN pip install uv==0.9.25
 
@@ -24,7 +20,7 @@ COPY ./pyproject.toml ./uv.lock ./
 RUN touch README.md
 
 
-RUN --mount=type=ssh uv venv\
+RUN uv venv \
     && uv export --no-dev > $UV_CACHE_DIR/requirements.txt \
     && uv pip sync $UV_CACHE_DIR/requirements.txt \
     && rm -rf $UV_CACHE_DIR
@@ -46,5 +42,9 @@ COPY ./backend/ /app/backend
 COPY ./cv_app/ /app/cv_app
 COPY ./manage.py /app/manage.py
 
+RUN mkdir -p /app/backend/data /app/backend/media
+
+RUN DJANGO_SECRET_KEY=collectstatic-build-dummy /app/.venv/bin/python manage.py collectstatic --noinput
+
 # RUN python -m compileall /app
-CMD ["/app/.venv/bin/python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["/app/.venv/bin/gunicorn", "backend.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "2"]
