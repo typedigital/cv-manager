@@ -81,8 +81,27 @@ export const LogoutButton = styled.button`
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.2s;
-  
+
   &:hover {
     background-color: #555;
+  }
+`;
+
+export const AdminLink = styled.a`
+  margin: 0 5% 0;
+  background-color: #FF5959;
+  font-size: 0.9em;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #e04e4e;
+    color: white;
   }
 `;

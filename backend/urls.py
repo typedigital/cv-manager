@@ -18,13 +18,14 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework.authtoken import views
+from django.views.generic import RedirectView
+from cv_app.views import admin_logout_view
 
 urlpatterns = [
+    path('admin/login/', RedirectView.as_view(url='/')),
+    path('admin/logout/', admin_logout_view),
     path('admin/', admin.site.urls),
     path('api/', include('cv_app.urls')),
-    path('api-token-auth/', csrf_exempt(views.obtain_auth_token)),
 ]
 
 # Diese Zeile ist entscheidend für Bilder im Entwicklungsmodus!

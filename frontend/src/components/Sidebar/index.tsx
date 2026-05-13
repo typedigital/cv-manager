@@ -9,7 +9,8 @@ import {
   ListItem,
   CVName,
   CVLabel,
-  LogoutButton
+  LogoutButton,
+  AdminLink,
 } from './components';
 
 interface SidebarProps {
@@ -19,15 +20,17 @@ interface SidebarProps {
   onSelect: (data: CVData) => void;
   activeCVName?: CVData['basics']['name'];
   onLogout: () => void;
+  isStaff: boolean;
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ 
-  isOpen, 
-  setIsOpen, 
-  cvList, 
-  onSelect, 
-  activeCVName, 
-  onLogout 
+export const Sidebar: React.FC<SidebarProps> = ({
+  isOpen,
+  setIsOpen,
+  cvList,
+  onSelect,
+  activeCVName,
+  onLogout,
+  isStaff,
 }) => {
   return (
     <Nav $isOpen={isOpen}>
@@ -36,10 +39,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
           <h3>CV Auswahl</h3>
           <CloseButton onClick={() => setIsOpen(false)}>✖</CloseButton>
         </Header>
-        
+
         <CVList>
           {cvList.map((item, index) => (
-            <ListItem 
+            <ListItem
               key={index}
               $active={activeCVName?.first === item.data.basics.name.first}
               onClick={() => {
@@ -52,8 +55,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
             </ListItem>
           ))}
         </CVList>
-        
-        <LogoutButton onClick={onLogout}>Logout</LogoutButton>
+
+        {isStaff && <AdminLink href="/admin/">Admin</AdminLink>}
+        <LogoutButton onClick={onLogout}>Abmelden</LogoutButton>
       </Wrapper>
     </Nav>
   );

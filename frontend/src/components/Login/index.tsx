@@ -11,7 +11,7 @@ import {
 } from './components';
 
 interface LoginProps {
-  onLogin: (token: string) => void;
+  onLogin: (token: string, isStaff: boolean) => void;
 }
 
 export const Login: React.FC<LoginProps> = ({ onLogin }) => {
@@ -20,7 +20,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const API_URL = import.meta.env.DEV ? 'http://127.0.0.1:8000/api-token-auth/' : '/api-token-auth/';
+  const API_URL = import.meta.env.DEV ? 'http://127.0.0.1:8000/api/login/' : '/api/login/';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,12 +34,13 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
         body: JSON.stringify({ username, password })
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error('Zugangsdaten ungültig');
+        throw new Error(data.error || 'Zugangsdaten ungültig');
       }
 
-      const data = await response.json();
-      onLogin(data.token);
+      onLogin(data.token, data.is_staff);
 
     } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Login fehlgeschlagen';

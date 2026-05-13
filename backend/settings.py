@@ -162,6 +162,9 @@ JAZZMIN_SETTINGS = {
     'search_model': 'cv_app.CV',
     'user_avatar': None,
     'show_ui_builder': True,
+    'topmenu_links': [
+        {'name': '← Zurück zur App', 'url': '/', 'new_window': False},
+    ],
     'changeform_format': 'horizontal_tabs',
     'changeform_format_overrides': {
         'auth.user': 'collapsible',

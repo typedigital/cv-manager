@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import './App.css';
 import type { CVData, Html2PdfOptions } from './types';
 import { Sidebar } from './components/Sidebar';
@@ -7,23 +7,50 @@ import { useCVLoader } from './hooks/useCVLoader';
 import html2pdf from 'html2pdf.js';
 import { Login } from './components/Login';
 
-function App() {
-  const [token, setToken] = useState<string | null>(null);
-  
-  useEffect(() => {
-    const savedToken = sessionStorage.getItem('auth_token');
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    if (savedToken) setToken(savedToken);
-  }, []);
+const LOGOUT_URL = import.meta.env.DEV ? 'http://127.0.0.1:8000/api/logout/' : '/api/logout/';
 
-  const handleLogin = (newToken: string) => {
-    setToken(newToken);
-    sessionStorage.setItem('auth_token', newToken);
+function initAuthState() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('logout') === '1') {
+    sessionStorage.removeItem('auth_token');
+    sessionStorage.removeItem('is_staff');
+    window.history.replaceState({}, '', '/');
+    return { token: null as string | null, isStaff: false };
+  }
+  return {
+    token: sessionStorage.getItem('auth_token'),
+    isStaff: sessionStorage.getItem('is_staff') === 'true',
+  };
+}
+
+function App() {
+  const init = initAuthState();
+  const [token, setToken] = useState<string | null>(init.token);
+  const [isStaff, setIsStaff] = useState(init.isStaff);
+
+  const clearSession = () => {
+    setToken(null);
+    setIsStaff(false);
+    sessionStorage.removeItem('auth_token');
+    sessionStorage.removeItem('is_staff');
   };
 
-  const handleLogout = () => {
-    setToken(null);
-    sessionStorage.removeItem('auth_token');
+  const handleLogin = (newToken: string, newIsStaff: boolean) => {
+    setToken(newToken);
+    setIsStaff(newIsStaff);
+    sessionStorage.setItem('auth_token', newToken);
+    sessionStorage.setItem('is_staff', String(newIsStaff));
+  };
+
+  const handleLogout = async () => {
+    const currentToken = sessionStorage.getItem('auth_token');
+    if (currentToken) {
+      await fetch(LOGOUT_URL, {
+        method: 'POST',
+        headers: { 'Authorization': `Token ${currentToken}` },
+      }).catch(() => {});
+    }
+    clearSession();
   };
 
   const { cvList, loading, error } = useCVLoader(token);
@@ -94,13 +121,14 @@ function App() {
         <button className="btn btn-accent" onClick={handleDownload}>PDF Herunterladen</button>
       </div>
 
-      <Sidebar 
-        isOpen={isMenuOpen} 
-        setIsOpen={setIsMenuOpen} 
-        cvList={cvList} 
+      <Sidebar
+        isOpen={isMenuOpen}
+        setIsOpen={setIsMenuOpen}
+        cvList={cvList}
         onSelect={setSelectedCV}
         activeCVName={currentCV.basics.name}
         onLogout={handleLogout}
+        isStaff={isStaff}
       />
 
       <div className="cv-page-wrapper">
